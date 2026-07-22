@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <h2>Admin Login</h2>
+
+  <input id="email" placeholder="Admin Email">
+  <input id="password" type="password" placeholder="Password">
+
+  <button onclick="adminLogin()">Login as Admin</button>
+
+  <p><a href="index.html">Back to Home</a></p>
+
+</div>
+
+<script src="app.js"></script>
+
+<script>
+function adminLogin() {
+  fetch("http://localhost:5000/api/auth/login", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.role !== "admin") {
+      alert("Access denied: Not an admin");
+      return;
+    }
+
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("role", data.role);
+
+    window.location.href = "admin.html";
+  });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task Tracker System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <h1>Task Tracker System</h1>
+  <p>Select login type</p>
+
+  <button onclick="goUserLogin()">User Login</button>
+  <button onclick="goAdminLogin()">Admin Login</button>
+
+</div>
+
+<script>
+  function goUserLogin() {
+    window.location.href = "login.html";
+  }
+
+  function goAdminLogin() {
+    window.location.href = "admin-login.html";
+  }
+</script>
+
+</body>
+</html>
